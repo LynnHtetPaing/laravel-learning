@@ -1,0 +1,62 @@
+
+we can use tinker for testing Eloquent...;
+
+
+>>> $user = new User;
+=> App\Models\User {#4331}
+>>> $user->name = 'test1';
+=> "test1"
+>>> $user->email = 'test1@gmail.com';
+=> "test1@gmail.com"
+>>> $user->password = bcrypt('ilovetesla');
+=> "$2y$10$Pw5O6mvbEOSelJ9Y/RSXl.uE7iZmFh66Y1GY1cis/p8k5uJwxbVVq"
+>>> $user->save();
+=> true
+>>> $user
+=> App\Models\User {#4331
+     name: "test1",
+     email: "test1@gmail.com",
+     #password: "$2y$10$Pw5O6mvbEOSelJ9Y/RSXl.uE7iZmFh66Y1GY1cis/p8k5uJwxbVVq",
+     updated_at: "2021-12-24 12:35:46",
+     created_at: "2021-12-24 12:35:46",
+     id: 2,
+   }
+>>> $user::all();
+=> Illuminate\Database\Eloquent\Collection {#4474
+     all: [
+       App\Models\User {#3859
+         id: 1,
+         name: "Lin Htet",
+         email: "linhtet@gmail.com",
+         email_verified_at: null,
+         #password: "$2y$10$K5oiLe2/qmkLNHDCrvX1Oec0.z6/QDJ4eWD9oMeKbvpVs647zHX5m",
+         #remember_token: null,
+         created_at: "2021-12-24 12:30:38",
+         updated_at: "2021-12-24 12:30:38",
+       },
+       App\Models\User {#4227
+         id: 2,
+         name: "test1",
+         email: "test1@gmail.com",
+         email_verified_at: null,
+         #password: "$2y$10$Pw5O6mvbEOSelJ9Y/RSXl.uE7iZmFh66Y1GY1cis/p8k5uJwxbVVq",
+         #remember_token: null,
+         created_at: "2021-12-24 12:35:46",
+         updated_at: "2021-12-24 12:35:46",
+       },
+     ],
+   }
+>>> $user->pluck('name');
+=> Illuminate\Support\Collection {#3538
+     all: [
+       "Lin Htet",
+       "test1",
+     ],
+   }
+>>> $user->pluck('email');
+=> Illuminate\Support\Collection {#4422
+     all: [
+       "linhtet@gmail.com",
+       "test1@gmail.com",
+     ],
+   }
