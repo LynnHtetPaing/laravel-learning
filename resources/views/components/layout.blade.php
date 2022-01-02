@@ -6,6 +6,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
+    
     .clamp {
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -38,7 +42,7 @@
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
                 @endguest
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -62,7 +66,7 @@
                                    class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
 
-                        <button type="submit"
+                        <button id="newsletter" type="submit"
                                 class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
                         >
                             Subscribe
