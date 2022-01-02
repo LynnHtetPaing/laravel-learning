@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
-
-    protected $guarded = [];
 
     protected $with = ['category', 'author'];
 
@@ -32,6 +31,12 @@ class Post extends Model
         $query->when($filters['author'] ?? false, fn($query, $author) =>
         $query->whereHas('author', fn ($query) => 
             $query->where('username', $author)));
+    }
+
+    public function comments()
+    {
+        // hasOne, hasMany, belongsTo, belongsToMany
+        return $this->hasMany(Comment::class);
     }
 
     public function category()
