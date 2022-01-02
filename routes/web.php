@@ -21,18 +21,28 @@ use App\Http\Controllers\PostCommentsController;
 |
 */
 
-Route::get('ping', function() {
+Route::post('newsletter', function() {
+    request()->validate(['email' => 'required|email']);
+
     $mailchimp = new \MailchimpMarketing\ApiClient();
 
     $mailchimp->setConfig([
         'apiKey' => '7fae5d99f7c9d36c5bfb49078da1114d-us20',
         'server' => 'us20'
     ]);
+   try
+   {
     $response = $mailchimp->lists->addListMember("c1bedae109", [
-        'email_address' => 'painglynn181@gmail.com',
+        'email_address' => request('email'),
         'status' => 'subscribed'
     ]);
-    ddd($response);
+   } catch(\Exception $e)
+   {
+       throw \Illuminate\Validation\ValidationException::withMessages([
+           'email' => 'This email could not be added to our newsletter list '
+       ]);
+   }
+    return redirect('/')->with('success', 'You are now signed up for newsletter!');
 });
 
 
